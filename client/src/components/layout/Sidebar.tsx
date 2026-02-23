@@ -33,7 +33,7 @@ export function Sidebar() {
                   }`}
                 >
                   <span className={`text-xs font-mono uppercase tracking-[0.2em] ${isActive ? "font-bold" : ""}`}>
-                    {isActive && <span className="mr-2">>></span>}
+					  {isActive && <span className="mr-2">{">>"}</span>}
                     {item.label}
                   </span>
                 </a>

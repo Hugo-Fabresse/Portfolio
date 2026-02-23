@@ -1,0 +1,258 @@
+Tu dois créer un portfolio professionnel pour un développeur système spécialisé en bas niveau, avec un positionnement clair, minimaliste et rigoureux.
+
+Le ton doit être sobre, précis, structuré, sans emphase inutile.
+Aucune phrase creuse.
+Chaque section doit démontrer de la compétence réelle.
+
+Le portfolio doit être organisé de manière logique et hiérarchisée.
+
+1. Présentation Générale
+
+Décris le profil comme :
+
+Développeur système orienté bas niveau
+
+Spécialisation progressive en C
+
+Travail sous Arch Linux
+
+Environnement minimaliste maîtrisé (Hyprland, Neovim configuré manuellement)
+
+Approche orientée compréhension structurelle des systèmes
+
+Refus des abstractions inutiles
+
+Mettre en avant :
+
+Rigueur
+
+Contrôle
+
+Architecture
+
+Autonomie technique
+
+2. Projets Principaux
+JUST — Version Control System en C
+
+Décrire en détail :
+
+Implémentation d’un VCS from scratch
+
+Gestion des objets (blobs, trees, commits)
+
+Architecture modulaire
+
+Object system
+
+Infra system
+
+Manipulation du filesystem
+
+Gestion mémoire stricte
+
+Compilation avec warnings traités comme erreurs
+
+Travail avancé sur pointeurs (char **, conversions explicites, gestion multi-niveaux)
+
+Mettre en valeur :
+
+Compréhension interne de Git
+
+Capacité à reconstruire un outil fondamental
+
+Discipline d’architecture
+
+GOAT — Git minimal
+
+Décrire :
+
+Reproduction minimaliste des primitives essentielles de Git
+
+Objectif pédagogique et conceptuel
+
+Isolation des mécanismes fondamentaux
+
+Approche expérimentale
+
+Expliquer la complémentarité entre GOAT et JUST.
+
+3. Environnement Technique
+
+Décrire :
+
+Arch Linux configuré manuellement
+
+Gestion kernel LTS
+
+Résolution de problèmes système (modules, signatures PGP, paquets corrompus)
+
+Utilisation exclusive de Neovim comme IDE
+
+Configuration personnalisée
+
+Workflow optimisé pour C
+
+Utilisation de Hyprland
+
+Mettre en avant :
+
+Indépendance technique
+
+Compréhension système
+
+Optimisation du workflow
+
+4. Expérience en Encadrement et Transmission
+Coding Club Epitech Montpellier
+
+1 an encadrant
+
+1 an gérant
+
+Responsabilités :
+
+Organisation
+
+Structuration pédagogique
+
+Gestion d’équipe
+
+Planification
+
+Coordination
+
+AER — 2 ans
+
+Accompagnement étudiants
+
+Explication de concepts complexes
+
+Correction
+
+Encadrement technique
+
+Mettre en avant :
+
+Pédagogie
+
+Clarté d’explication
+
+Leadership académique
+
+5. Leadership & Gestion de Projet
+
+Décrire les rôles occupés :
+
+Chef de projet
+
+Scrum Master
+
+Lead Developer
+
+Expliquer les compétences développées :
+
+Structuration des tâches
+
+Découpage technique
+
+Organisation d’équipe
+
+Communication
+
+Maintien de la qualité
+
+Vision globale + exécution
+
+6. Domaines d’Expertise
+Bas niveau
+
+C (axe principal)
+
+C++
+
+Assembly
+
+Structures mémoire
+
+Interaction système
+
+Analyse de code source système
+
+Compréhension des binaires
+
+Cybersécurité
+
+Red team
+
+Pentest
+
+Compréhension offensive des systèmes
+
+Analyse des surfaces d’attaque
+
+7. Méthodologie et Philosophie
+
+Décrire :
+
+Minimalisme
+
+Rejet de la complexité inutile
+
+Construction d’outils plutôt que dépendance excessive
+
+Recherche d’alternatives open source
+
+Volonté d’indépendance technologique
+
+Discipline personnelle
+
+8. Soft Skills Stratégiques
+
+Vision stratégique (échecs)
+
+Anticipation
+
+Analyse structurelle
+
+Prise de décision sous contrainte
+
+Organisation
+
+Gestion humaine
+
+9. Objectif du Portfolio
+
+Le portfolio doit :
+
+Montrer une capacité réelle à construire des systèmes
+
+Prouver une maîtrise du bas niveau
+
+Démontrer leadership et autonomie
+
+Positionner le profil vers :
+
+Développement système
+
+Sécurité offensive
+
+Architecture logicielle
+
+Contraintes de sortie
+
+Structure claire avec titres hiérarchisés
+
+Pas de phrases génériques
+
+Pas de storytelling inutile
+
+Pas d’exagération
+
+Ton professionnel
+
+Clarté maximale
+
+Densité d’information élevée
+
+Mise en avant des compétences concrètes

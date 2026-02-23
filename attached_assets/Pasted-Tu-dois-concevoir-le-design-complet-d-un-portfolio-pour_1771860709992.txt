@@ -1,0 +1,230 @@
+Tu dois concevoir le design complet d’un portfolio pour un développeur système bas niveau spécialisé en C, architecture logicielle et cybersécurité offensive.
+
+Le contenu existe déjà.
+Ta mission est uniquement de définir l’identité visuelle, l’expérience utilisateur et l’architecture graphique.
+
+Le design doit refléter :
+
+Minimalisme radical
+
+Rigueur
+
+Maîtrise
+
+Silence visuel
+
+Précision
+
+Structure
+
+Aucune esthétique “hacker cliché”.
+Aucun effet visuel gratuit.
+Aucune surcharge graphique.
+
+1. Atmosphère Générale
+
+Le site doit donner l’impression de :
+
+Contrôle
+
+Stabilité
+
+Discipline
+
+Intelligence structurée
+
+Froid calcul
+
+Pas de romantisme.
+Pas d’illustrations inutiles.
+Pas de gradients colorés “startup”.
+
+C’est une interface fonctionnelle, presque instrumentale.
+
+2. Palette de Couleurs
+
+Propose :
+
+Une base sombre ou très claire, mais uniforme.
+
+Une seule couleur d’accent maximum.
+
+Contraste fort.
+
+Pas de dégradés multiples.
+
+Pas d’ombres décoratives.
+
+La couleur d’accent doit évoquer :
+
+Signal
+
+Terminal
+
+Système
+
+Focus
+
+Mais rester sobre.
+
+3. Typographie
+
+Choisir :
+
+Une typographie principale sans-serif moderne, stricte.
+
+Optionnel : une typographie monospace pour certaines parties (code, labels, sections techniques).
+
+Hiérarchie typographique nette.
+
+Espacement maîtrisé.
+
+Pas de typographies “artistiques”.
+
+Le texte doit respirer mais rester dense.
+
+4. Layout
+
+Proposer :
+
+Grille stricte.
+
+Alignements parfaits.
+
+Marges cohérentes.
+
+Sections clairement séparées.
+
+Éviter :
+
+Animations complexes
+
+Scroll spectaculaire
+
+Effets parallax
+
+Transitions lourdes
+
+Si animation il y a :
+
+Micro-interactions discrètes
+
+Transitions rapides
+
+Feedback fonctionnel
+
+5. Navigation
+
+Simple.
+
+Barre fixe minimale ou navigation latérale sobre.
+
+Pas de menu complexe.
+
+Accès rapide aux sections :
+
+Profil
+
+Projets
+
+Expérience
+
+Compétences
+
+Contact
+
+Navigation logique, non décorative.
+
+6. Mise en Valeur des Projets
+
+Les projets doivent être présentés comme :
+
+Objets techniques
+
+Systèmes
+
+Architectures
+
+Pas comme des “produits”.
+
+Chaque projet doit inclure :
+
+Nom
+
+Stack
+
+Objectif
+
+Contraintes techniques
+
+Difficultés résolues
+
+Choix d’architecture
+
+Design orienté documentation technique.
+
+7. Impression Globale
+
+Le portfolio doit ressembler à :
+
+Une documentation maîtrisée
+
+Une interface d’ingénierie
+
+Un système cohérent
+
+Un environnement contrôlé
+
+Pas à un site “créatif”.
+
+8. Ce qu’il faut absolument éviter
+
+Esthétique néon hacker
+
+Fond animé avec code qui défile
+
+Matrice verte
+
+Effets glitch
+
+Storytelling dramatique
+
+Citation philosophique
+
+Overdesign
+
+9. Originalité Demandée
+
+Le design doit être :
+
+Unique
+
+Cohérent
+
+Reconnaissable
+
+Minimal sans être vide
+
+Technique sans être stéréotypé
+
+Il doit transmettre une identité forte sans jamais l’expliquer explicitement.
+
+10. Format de Réponse Attendu
+
+Fournir :
+
+Concept global
+
+Palette précise (codes couleurs)
+
+Typographies recommandées
+
+Structure du layout
+
+Règles d’UI
+
+Règles d’animation (si présentes)
+
+Description de l’expérience utilisateur
+
+Éléments différenciants

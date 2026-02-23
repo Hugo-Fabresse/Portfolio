@@ -14,28 +14,26 @@ export function Sidebar() {
   const activeSection = useActiveSection(navItems.map(item => item.id));
 
   return (
-    <nav className="md:w-72 md:fixed md:inset-y-0 md:left-0 border-r border-border/50 bg-background/95 backdrop-blur z-50 p-8 flex flex-col justify-between hidden md:flex">
+    <nav className="md:w-64 md:fixed md:inset-y-0 md:left-0 border-r border-border bg-background z-50 p-10 flex flex-col justify-between hidden md:flex">
       <div>
-        <div className="flex items-center gap-3 mb-16">
-          <Terminal className="w-8 h-8 text-primary" />
-          <span className="font-mono font-bold text-xl tracking-tight">SYS_DEV</span>
+        <div className="mb-20">
+          <div className="font-mono font-bold text-2xl tracking-tighter">SYS_ARCH</div>
+          <div className="mono-label mt-1">v.2.0.26</div>
         </div>
         
-        <ul className="space-y-6">
+        <ul className="space-y-8">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <li key={item.id}>
                 <a 
                   href={`#${item.id}`}
-                  className={`flex items-center group transition-all duration-300 ${
+                  className={`flex items-center group transition-none ${
                     isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  <span className="font-mono text-xs mr-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                    {item.index}.
-                  </span>
-                  <span className={`text-sm tracking-widest uppercase ${isActive ? "tech-glow" : ""}`}>
+                  <span className={`text-xs font-mono uppercase tracking-[0.2em] ${isActive ? "font-bold" : ""}`}>
+                    {isActive && <span className="mr-2">>></span>}
                     {item.label}
                   </span>
                 </a>
@@ -45,9 +43,10 @@ export function Sidebar() {
         </ul>
       </div>
 
-      <div className="font-mono text-xs text-muted-foreground/50">
-        <p>STATUS: ONLINE</p>
-        <p>SYSTEM: NOMINAL</p>
+      <div className="mono-label opacity-30 space-y-1">
+        <p>SEC_LAYER: ACTIVE</p>
+        <p>ENCRYPTION: AES-256</p>
+        <p>© 2026 ROOT_USR</p>
       </div>
     </nav>
   );

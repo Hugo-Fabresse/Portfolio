@@ -23,38 +23,35 @@ const projects = [
 export function ProjectsSection() {
   return (
     <section id="projects" className="py-24">
-      <FadeIn>
-        <SectionHeading title="Projets Principaux" index="01" />
-      </FadeIn>
+      <SectionHeading title="System Components" index="01" />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {projects.map((project, i) => (
-          <FadeIn key={project.title} delay={i * 0.2}>
-            <Card className="tech-border bg-card/40 rounded-none h-full flex flex-col group">
-              <CardHeader>
-                <div className="flex justify-between items-start mb-4">
-                  <div className="p-3 bg-muted group-hover:bg-primary/10 transition-colors">
-                    <project.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <span className="font-mono text-xs text-muted-foreground">./{project.title.toLowerCase()}</span>
-                </div>
-                <CardTitle className="text-2xl font-bold tracking-tight">{project.title}</CardTitle>
-                <CardDescription className="font-mono text-primary mt-1">{project.subtitle}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between">
-                <p className="text-muted-foreground leading-relaxed mb-8">
+      <div className="grid grid-cols-1 gap-12">
+        {projects.map((project) => (
+          <div key={project.title} className="border border-border bg-card p-8 group relative">
+            <div className="absolute top-0 right-0 p-4 mono-label opacity-20">
+              BLOCK_ID: {project.title.toUpperCase()}
+            </div>
+            
+            <div className="flex flex-col md:flex-row md:items-start gap-8">
+              <div className="flex-1">
+                <div className="mono-label text-primary mb-2">// {project.subtitle}</div>
+                <h3 className="text-3xl font-bold mb-6">{project.title}</h3>
+                
+                <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-border/50">
                   {project.techs.map((tech) => (
-                    <span key={tech} className="text-xs font-mono px-2 py-1 bg-muted text-muted-foreground border border-border/50">
-                      {tech}
-                    </span>
+                    <div key={tech} className="flex flex-col">
+                      <span className="mono-label text-[8px] opacity-40">DEPENDENCY</span>
+                      <span className="font-mono text-xs">{tech}</span>
+                    </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </section>

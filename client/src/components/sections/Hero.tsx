@@ -2,56 +2,46 @@ import { FadeIn } from "@/components/ui/fade-in";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center pt-20 pb-32">
-      <FadeIn delay={0.1}>
-        <div className="font-mono text-primary mb-6 flex items-center gap-3 text-sm md:text-base">
-          <span className="animate-pulse">_</span>
-          <span>init_sequence()</span>
-        </div>
-      </FadeIn>
+    <section id="hero" className="min-h-screen flex flex-col justify-center py-20">
+      <div className="mono-label mb-8">
+        SYSTEM_STATUS: OPERATIONAL // KERNEL: 6.1.0-LTS
+      </div>
       
-      <FadeIn delay={0.2}>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 text-foreground">
-          System Developer.
-        </h1>
-      </FadeIn>
+      <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-[ -0.05em] leading-[0.85] mb-8 text-foreground">
+        SYSTEM<br />ARCHITECT.
+      </h1>
       
-      <FadeIn delay={0.3}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-mono text-muted-foreground mb-10 border-l-2 border-primary pl-4">
-          Low-Level Specialization.
-        </h2>
-      </FadeIn>
+      <div className="tech-border-accent mb-12 max-w-xl">
+        <p className="text-xl md:text-2xl font-mono text-muted-foreground leading-tight">
+          C / LOW-LEVEL / SECURITY / ARCH
+        </p>
+      </div>
       
-      <FadeIn delay={0.4}>
-        <div className="max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed space-y-6">
-          <p>
-            Spécialisation progressive en <span className="text-foreground font-mono bg-muted px-1.5 py-0.5">C</span>. 
-            Développement orienté compréhension structurelle profonde des systèmes.
-          </p>
-          <p>
-            Environnement de travail minimaliste et maîtrisé. Refus catégorique des abstractions inutiles et 
-            des dépendances superflues. Focus exclusif sur la rigueur, le contrôle, l'architecture et 
-            l'autonomie technique.
-          </p>
-        </div>
-      </FadeIn>
+      <div className="max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed space-y-6 border-l border-border pl-8 ml-1">
+        <p>
+          Spécialisation en <span className="text-foreground font-mono bg-muted px-1">C</span>. 
+          Focus structurel. Refus des abstractions inutiles.
+        </p>
+        <p>
+          Environnement minimaliste (Hyprland, Neovim). Rigueur mathématique appliquée au code.
+          Contrôle total sur l'exécution.
+        </p>
+      </div>
       
-      <FadeIn delay={0.5}>
-        <div className="mt-12 flex items-center gap-6">
-          <a 
-            href="#projects" 
-            className="border border-primary text-primary px-6 py-3 font-mono text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-          >
-            Voir_Les_Projets()
-          </a>
-          <a 
-            href="#contact" 
-            className="text-muted-foreground hover:text-foreground font-mono text-sm underline underline-offset-4 transition-colors"
-          >
-            /api/contact
-          </a>
-        </div>
-      </FadeIn>
+      <div className="mt-16 flex flex-wrap items-center gap-8">
+        <a 
+          href="#projects" 
+          className="border border-primary text-primary px-8 py-4 font-mono text-xs uppercase tracking-[0.3em] hover:bg-primary hover:text-primary-foreground transition-none"
+        >
+          EXEC ./PROJECTS
+        </a>
+        <a 
+          href="#contact" 
+          className="mono-label hover:text-foreground transition-none underline underline-offset-8"
+        >
+          CONNECT_API(CONTACT)
+        </a>
+      </div>
     </section>
   );
 }

@@ -1,12 +1,8 @@
 /**
  * Navbar — Top navigation bar inspired by Waybar/Neovim tabline.
  *
- * Displays enabled sections as "buffer tabs" with file-style labels.
- * Highlights the currently active section (via IntersectionObserver).
- * Includes dark/light mode toggle and vim mode indicator.
- *
- * Height: 24-32px (matching Waybar's minimal footprint).
- * Active tab: fg/bg inversion + bold (Waybar/Wofi pattern).
+ * Displays enabled sections as buffer tabs. Active buffer is controlled
+ * by parent (App.tsx), not by scroll observation.
  *
  * @see docs/superpowers/specs/2026-04-26-portfolio-redesign-design.md — "Navbar"
  */
@@ -15,11 +11,16 @@ import { useTheme } from "next-themes"
 
 import { getEnabledSections } from "@/config"
 import { siteConfig } from "@/config"
-import { useActiveSection } from "@/hooks/useActiveSection"
 
-export default function Navbar() {
+interface NavbarProps {
+  /** Currently active buffer key */
+  activeBuffer: string
+  /** Callback to switch buffer */
+  onBufferSelect: (key: string) => void
+}
+
+export default function Navbar({ activeBuffer, onBufferSelect }: NavbarProps) {
   const sections = getEnabledSections()
-  const activeSection = useActiveSection()
   const { theme, setTheme } = useTheme()
 
   return (
@@ -29,30 +30,30 @@ export default function Navbar() {
         {siteConfig.title}
       </span>
 
-      {/* Section tabs */}
+      {/* Buffer tabs */}
       <div className="flex items-center gap-1">
-        {sections.map(({ key, config }) => {
-          const isActive = activeSection === key
+        {sections.map(({ key, config }, index) => {
+          const isActive = activeBuffer === key
           return (
             <button
               key={key}
-              onClick={() => {
-                document.getElementById(key)?.scrollIntoView({ behavior: "smooth" })
-              }}
+              onClick={() => onBufferSelect(key)}
               className={`px-[10px] py-[2px] rounded transition-colors ${
                 isActive
                   ? "bg-tn-fg text-tn-bg font-bold"
                   : "text-tn-fg hover:bg-white/10"
               }`}
             >
+              <span className="text-tn-comment mr-1">{index + 1}:</span>
               {config.label}
             </button>
           )
         })}
       </div>
 
-      {/* Right side — theme toggle + mode indicator */}
+      {/* Right side — help hint, theme toggle, mode indicator */}
       <div className="ml-auto flex items-center gap-3">
+        <span className="text-tn-comment">? help</span>
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="text-tn-comment hover:text-tn-fg transition-colors"

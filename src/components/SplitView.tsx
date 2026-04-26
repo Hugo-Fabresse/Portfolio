@@ -147,7 +147,7 @@ export default function SplitView<T>({
   }, [viewState])
 
   return (
-    <div className="flex flex-col lg:flex-row gap-1.5 min-h-0">
+    <div className="flex flex-col lg:flex-row gap-1.5 h-full">
       {/* List panel — hidden when expanded */}
       <AnimatePresence>
         {viewState !== "expanded" && (
@@ -171,12 +171,13 @@ export default function SplitView<T>({
               {listTitle}
             </div>
 
-            {/* Items */}
-            <div className={`p-1.5 ${viewState === "closed" ? "grid grid-cols-1 md:grid-cols-2 gap-1.5" : "flex flex-col gap-1.5"}`}>
+            {/* Items — nvim buffer style with line numbers and tildes */}
+            <div className="flex-1 font-mono text-[13px] leading-relaxed overflow-auto">
               {items.map((item, index) => {
                 const key = getKey(item)
                 const isSelected = selectedItem !== null && getKey(selectedItem) === key
                 const isFocused = index === focusedIndex && focusPanel === "list"
+                const lineNumWidth = String(items.length).length
                 return (
                   <button
                     key={key}
@@ -184,16 +185,40 @@ export default function SplitView<T>({
                       setFocusedIndex(index)
                       openSplit(item)
                     }}
-                    className={`text-left rounded-md p-3 transition-colors ${
+                    className={`flex w-full text-left transition-colors ${
                       isSelected
                         ? "bg-tn-fg text-tn-bg font-bold"
                         : isFocused
-                          ? "border-l-2 border-tn-accent bg-white/5"
-                          : "border-l-2 border-transparent hover:bg-white/10"
+                          ? "bg-white/5"
+                          : "hover:bg-white/10"
                     }`}
                   >
-                    {renderItem(item, isSelected)}
+                    <span
+                      className={`text-right mr-3 pl-3 py-[2px] select-none shrink-0 ${
+                        isSelected ? "opacity-50" : "text-tn-comment"
+                      }`}
+                      style={{ width: `${lineNumWidth + 2}ch` }}
+                    >
+                      {index + 1}
+                    </span>
+                    <span className="py-[2px] pr-3">
+                      {renderItem(item, isSelected)}
+                    </span>
                   </button>
+                )
+              })}
+              {/* Tilde lines to fill remaining space */}
+              {Array.from({ length: Math.max(0, 12 - items.length) }, (_, i) => {
+                const lineNumWidth = String(items.length).length
+                return (
+                  <div key={`tilde-${i}`} className="flex">
+                    <span
+                      className="text-tn-accent text-right mr-3 pl-3 select-none shrink-0"
+                      style={{ width: `${lineNumWidth + 2}ch` }}
+                    >
+                      ~
+                    </span>
+                  </div>
                 )
               })}
             </div>

@@ -1,12 +1,14 @@
 /**
  * Section Experience — Professional experience and leadership.
  *
- * Uses SplitView to display experience entries with expandable detail.
+ * Uses SplitView with NvimBuffer-styled content in both
+ * list items and detail panels.
  * Data: src/data/experience.ts
  */
 
 import Section from "@/components/Section"
 import SplitView from "@/components/SplitView"
+import NvimBuffer from "@/components/NvimBuffer"
 import { experienceData } from "@/data/experience"
 
 import type { Experience } from "@/data/experience"
@@ -18,28 +20,37 @@ export default function Experience() {
         items={experienceData}
         getKey={(e) => e.id}
         listTitle="experience.log"
-        getDetailTitle={(e) => e.id}
+        getDetailTitle={(e) => `${e.id}.log`}
         renderItem={(exp, isSelected) => (
-          <div>
-            <span className={isSelected ? "" : "text-tn-accent"}>{exp.role}</span>
+          <div className="font-mono text-[13px]">
+            <span className={isSelected ? "" : "text-tn-accent"}>
+              {exp.role}
+            </span>
             <span className={`ml-1.5 text-[11px] ${isSelected ? "opacity-70" : "text-tn-comment"}`}>
               @ {exp.organization}
             </span>
           </div>
         )}
         renderDetail={(exp) => (
-          <div className="flex flex-col gap-3">
-            <div>
-              <h3 className="text-tn-accent font-bold">{exp.role}</h3>
-              <p className="text-tn-comment text-[11px]">
-                {exp.organization} — {exp.type}
-              </p>
-              {exp.period && (
-                <p className="text-tn-comment text-[11px]">{exp.period}</p>
-              )}
-            </div>
-            <p className="text-[13px] leading-relaxed">{exp.description}</p>
-          </div>
+          <NvimBuffer
+            lines={[
+              { content: <><span className="text-tn-comment">{"-- "}</span><span className="text-tn-accent font-bold">{exp.role}</span></> },
+              { content: <><span className="text-tn-comment">{"-- "}</span><span className="text-tn-secondary">{exp.organization}</span></> },
+              { content: "", isBlank: true },
+              { content: <><span className="text-tn-comment">{"-- "}</span><span className="text-tn-secondary font-bold">Type</span></>, isComment: true },
+              { content: <span className="text-tn-green">{exp.type}</span> },
+              ...(exp.period
+                ? [
+                    { content: "", isBlank: true },
+                    { content: <><span className="text-tn-comment">{"-- "}</span><span className="text-tn-secondary font-bold">Period</span></>, isComment: true },
+                    { content: <span>{exp.period}</span> },
+                  ]
+                : []),
+              { content: "", isBlank: true },
+              { content: <><span className="text-tn-comment">{"-- "}</span><span className="text-tn-secondary font-bold">Description</span></>, isComment: true },
+              { content: <span>{exp.description}</span> },
+            ]}
+          />
         )}
       />
     </Section>

@@ -26,9 +26,9 @@ export default function Section({ id, children }: SectionProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: snap }}
-      className="h-full flex items-center justify-center p-4 overflow-auto"
+      className="h-full w-full flex flex-col p-4"
     >
-      <div className="w-full max-w-6xl">
+      <div className="w-full h-full flex-1">
         {children}
       </div>
     </motion.section>

@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Old project remnants
+.env
+.replit
+.local/
+attached_assets/
+client/
+server/
+shared/
+script/

@@ -51,8 +51,10 @@ export default function App() {
         activeBuffer={activeBuffer}
         onBufferSelect={setActiveBuffer}
       />
-      <main className="h-[calc(100vh-2rem)] mt-8 font-mono overflow-auto">
-        {ActiveComponent && <ActiveComponent />}
+      <main className="fixed top-8 bottom-0 left-0 right-0 font-mono">
+        <div className="h-full w-full overflow-auto">
+          {ActiveComponent && <ActiveComponent />}
+        </div>
       </main>
       <HelpPanel open={helpOpen} onClose={() => setHelpOpen(false)} />
       <CommandBar

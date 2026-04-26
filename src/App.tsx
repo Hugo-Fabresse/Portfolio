@@ -8,6 +8,7 @@
 import { useState } from "react"
 
 import Navbar from "@/components/Navbar"
+import SEO from "@/components/SEO"
 import CommandBar from "@/components/CommandBar"
 import { getEnabledSections } from "@/config"
 import { sectionRegistry } from "@/registry"
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <>
+      <SEO />
       <Navbar />
       <main className="min-h-screen font-mono pt-8">
         {sections.map(({ key }) => {

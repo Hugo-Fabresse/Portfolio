@@ -1,15 +1,28 @@
 /**
- * App - Root component.
+ * App — Root component.
  *
- * Iterates over enabled sections in config and renders them
- * via the section registry. Wraps everything in theme and SEO providers.
+ * Reads enabled sections from config, looks up components
+ * in the registry, and renders them in order.
+ * Wraps everything in theme and SEO providers.
  */
 
+import { getEnabledSections } from "@/config"
+import { sectionRegistry } from "@/registry"
+
 export default function App() {
+  const sections = getEnabledSections()
+
   return (
     <main className="min-h-screen font-mono">
-      <p className="p-3 text-tn-accent font-bold">Portfolio</p>
-      <p className="p-3 text-tn-comment">Tokyo Night theme active</p>
+      {sections.map(({ key }) => {
+        const Component = sectionRegistry[key]
+        if (!Component) return null
+        return (
+          <section key={key} id={key} className="p-3">
+            <Component />
+          </section>
+        )
+      })}
     </main>
   )
 }

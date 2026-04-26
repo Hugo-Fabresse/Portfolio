@@ -17,9 +17,8 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
-/** Bezier curves from Hyprland config */
+/** Bezier snap curve from Hyprland config */
 const snap = [0.2, 0.8, 0.25, 1.0] as const
-const drift = [0.3, 0.0, 0.2, 1.0] as const
 
 /** The three view states */
 type ViewState = "closed" | "split" | "expanded"

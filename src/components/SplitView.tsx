@@ -14,7 +14,7 @@
  * @see docs/ARCHITECTURE.md — "Flux Split View"
  */
 
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 /** Bezier snap curve from Hyprland config */
@@ -48,6 +48,8 @@ export default function SplitView<T>({
 }: SplitViewProps<T>) {
   const [selectedItem, setSelectedItem] = useState<T | null>(null)
   const [viewState, setViewState] = useState<ViewState>("closed")
+  const [focusedIndex, setFocusedIndex] = useState(0)
+  const [focusPanel, setFocusPanel] = useState<"list" | "detail">("list")
 
   /** Open split view with a specific item */
   const openSplit = (item: T) => {
@@ -69,6 +71,80 @@ export default function SplitView<T>({
       setSelectedItem(null)
     }
   }
+
+  /** Keyboard handler for vim-style navigation */
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      // Skip if an input element has focus (CommandBar, HelpPanel, etc.)
+      const tag = (e.target as HTMLElement)?.tagName?.toLowerCase()
+      if (tag === "input" || tag === "textarea" || tag === "select") return
+
+      switch (e.key) {
+        case "j":
+          if (focusPanel === "list" && viewState !== "expanded") {
+            e.preventDefault()
+            setFocusedIndex((prev) => (prev + 1) % items.length)
+          }
+          break
+        case "k":
+          if (focusPanel === "list" && viewState !== "expanded") {
+            e.preventDefault()
+            setFocusedIndex((prev) => (prev - 1 + items.length) % items.length)
+          }
+          break
+        case "h":
+          if (viewState === "split") {
+            e.preventDefault()
+            setFocusPanel("list")
+          }
+          break
+        case "l":
+          if (viewState === "split") {
+            e.preventDefault()
+            setFocusPanel("detail")
+          }
+          break
+        case "Enter":
+          if (focusPanel === "list" && viewState !== "expanded" && items.length > 0) {
+            e.preventDefault()
+            openSplit(items[focusedIndex])
+          }
+          break
+        case "o":
+          if (viewState === "split") {
+            e.preventDefault()
+            expand()
+          }
+          break
+        case "q":
+          if (viewState !== "closed") {
+            e.preventDefault()
+            close()
+          }
+          break
+      }
+    },
+    [focusPanel, viewState, items, focusedIndex]
+  )
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [handleKeyDown])
+
+  // Keep focusedIndex in bounds if items change
+  useEffect(() => {
+    if (items.length > 0 && focusedIndex >= items.length) {
+      setFocusedIndex(items.length - 1)
+    }
+  }, [items.length, focusedIndex])
+
+  // Reset focus to list panel when detail closes
+  useEffect(() => {
+    if (viewState === "closed") {
+      setFocusPanel("list")
+    }
+  }, [viewState])
 
   return (
     <div className="flex flex-col lg:flex-row gap-1.5 min-h-0">
@@ -97,17 +173,23 @@ export default function SplitView<T>({
 
             {/* Items */}
             <div className={`p-1.5 ${viewState === "closed" ? "grid grid-cols-1 md:grid-cols-2 gap-1.5" : "flex flex-col gap-1.5"}`}>
-              {items.map((item) => {
+              {items.map((item, index) => {
                 const key = getKey(item)
                 const isSelected = selectedItem !== null && getKey(selectedItem) === key
+                const isFocused = index === focusedIndex && focusPanel === "list"
                 return (
                   <button
                     key={key}
-                    onClick={() => openSplit(item)}
+                    onClick={() => {
+                      setFocusedIndex(index)
+                      openSplit(item)
+                    }}
                     className={`text-left rounded-md p-3 transition-colors ${
                       isSelected
                         ? "bg-tn-fg text-tn-bg font-bold"
-                        : "hover:bg-white/10"
+                        : isFocused
+                          ? "border-l-2 border-tn-accent bg-white/5"
+                          : "border-l-2 border-transparent hover:bg-white/10"
                     }`}
                   >
                     {renderItem(item, isSelected)}

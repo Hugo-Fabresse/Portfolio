@@ -5,6 +5,12 @@
  * Data: src/data/projects.ts
  */
 
+import Section from "@/components/Section"
+
 export default function Projects() {
-  return <div className="p-3"><p className="text-tn-comment">[ projects/ ]</p></div>
+  return (
+    <Section id="projects">
+      <p className="text-tn-comment">[ projects/ ]</p>
+    </Section>
+  )
 }

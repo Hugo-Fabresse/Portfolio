@@ -3,7 +3,6 @@
  *
  * Reads enabled sections from config, looks up components
  * in the registry, and renders them in order.
- * Wraps everything in theme and SEO providers.
  */
 
 import { getEnabledSections } from "@/config"
@@ -17,11 +16,7 @@ export default function App() {
       {sections.map(({ key }) => {
         const Component = sectionRegistry[key]
         if (!Component) return null
-        return (
-          <section key={key} id={key} className="p-3">
-            <Component />
-          </section>
-        )
+        return <Component key={key} />
       })}
     </main>
   )

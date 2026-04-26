@@ -5,6 +5,12 @@
  * Data: src/data/experience.ts
  */
 
+import Section from "@/components/Section"
+
 export default function Experience() {
-  return <div className="p-3"><p className="text-tn-comment">[ experience.log ]</p></div>
+  return (
+    <Section id="experience">
+      <p className="text-tn-comment">[ experience.log ]</p>
+    </Section>
+  )
 }

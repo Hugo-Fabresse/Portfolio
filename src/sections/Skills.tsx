@@ -5,6 +5,12 @@
  * Data: src/data/skills.ts
  */
 
+import Section from "@/components/Section"
+
 export default function Skills() {
-  return <div className="p-3"><p className="text-tn-comment">[ skills.toml ]</p></div>
+  return (
+    <Section id="skills">
+      <p className="text-tn-comment">[ skills.toml ]</p>
+    </Section>
+  )
 }

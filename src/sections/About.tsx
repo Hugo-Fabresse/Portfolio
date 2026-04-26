@@ -5,6 +5,12 @@
  * Data: src/data/about.ts
  */
 
+import Section from "@/components/Section"
+
 export default function About() {
-  return <div className="p-3"><p className="text-tn-comment">[ about.md ]</p></div>
+  return (
+    <Section id="about">
+      <p className="text-tn-comment">[ about.md ]</p>
+    </Section>
+  )
 }

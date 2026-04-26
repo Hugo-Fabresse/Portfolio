@@ -51,7 +51,7 @@ export default function App() {
         activeBuffer={activeBuffer}
         onBufferSelect={setActiveBuffer}
       />
-      <main className="h-screen pt-8 pb-8 font-mono overflow-hidden">
+      <main className="h-[calc(100vh-2rem)] mt-8 font-mono overflow-auto">
         {ActiveComponent && <ActiveComponent />}
       </main>
       <HelpPanel open={helpOpen} onClose={() => setHelpOpen(false)} />

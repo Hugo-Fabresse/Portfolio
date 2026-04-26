@@ -28,7 +28,7 @@ export default function Section({ id, children }: SectionProps) {
       transition={{ duration: 0.3, ease: snap }}
       className="h-full flex items-center justify-center p-4 overflow-auto"
     >
-      <div className="w-full max-w-3xl">
+      <div className="w-full max-w-6xl">
         {children}
       </div>
     </motion.section>

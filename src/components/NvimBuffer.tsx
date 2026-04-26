@@ -25,7 +25,7 @@ interface NvimBufferProps {
   minLines?: number
 }
 
-export default function NvimBuffer({ lines, minLines = 20 }: NvimBufferProps) {
+export default function NvimBuffer({ lines, minLines = 12 }: NvimBufferProps) {
   /* Fill remaining space with tilde lines */
   const tildeCount = Math.max(0, minLines - lines.length)
   const lineNumberWidth = String(lines.length).length

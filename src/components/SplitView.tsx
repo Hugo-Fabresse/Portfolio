@@ -71,7 +71,7 @@ export default function SplitView<T>({
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-1.5 min-h-[400px]">
+    <div className="flex flex-col lg:flex-row gap-1.5 min-h-0">
       {/* List panel — hidden when expanded */}
       <AnimatePresence>
         {viewState !== "expanded" && (

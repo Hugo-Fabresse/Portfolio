@@ -7,8 +7,9 @@
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-tn-bg text-tn-fg font-mono">
-      <p className="p-3 text-tn-accent">Portfolio</p>
+    <main className="min-h-screen font-mono">
+      <p className="p-3 text-tn-accent font-bold">Portfolio</p>
+      <p className="p-3 text-tn-comment">Tokyo Night theme active</p>
     </main>
   )
 }

@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-mono: "Maple Mono NF", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Tokyo Night Dark (default) */
+  --color-tn-bg: #1a1b26;
+  --color-tn-bg-dark: #16161e;
+  --color-tn-fg: #a9b1d6;
+  --color-tn-accent: #7aa2f7;
+  --color-tn-secondary: #bb9af7;
+  --color-tn-green: #9ece6a;
+  --color-tn-red: #f7768e;
+  --color-tn-orange: #ff9e64;
+  --color-tn-comment: #565f89;
+}
+
+/* Tokyo Night Light override */
+.light {
+  --color-tn-bg: #d5d6db;
+  --color-tn-bg-dark: #c8c9ce;
+  --color-tn-fg: #343b58;
+  --color-tn-accent: #2e7de9;
+  --color-tn-secondary: #7847bd;
+  --color-tn-green: #587539;
+  --color-tn-red: #f52a65;
+  --color-tn-orange: #b15c00;
+  --color-tn-comment: #6172b0;
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-mono);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-tn-bg);
+  color: var(--color-tn-fg);
+}

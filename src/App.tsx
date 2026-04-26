@@ -1,25 +1,28 @@
 /**
  * App — Root component.
  *
- * Renders the Navbar and all enabled sections from config.
+ * Renders Navbar, enabled sections, and CommandBar.
  * Registers global vim keybinds via useVimNavigation.
  */
 
+import { useState } from "react"
+
 import Navbar from "@/components/Navbar"
+import CommandBar from "@/components/CommandBar"
 import { getEnabledSections } from "@/config"
 import { sectionRegistry } from "@/registry"
 import { useVimNavigation } from "@/hooks/useVimNavigation"
 
+type CommandBarMode = "command" | "search" | null
+
 export default function App() {
   const sections = getEnabledSections()
+  const [commandBarMode, setCommandBarMode] = useState<CommandBarMode>(null)
 
   useVimNavigation({
-    onSearch: () => {
-      /* CommandBar will be wired in Task 11 */
-    },
-    onCommand: () => {
-      /* CommandBar will be wired in Task 11 */
-    },
+    onSearch: () => setCommandBarMode("search"),
+    onCommand: () => setCommandBarMode("command"),
+    onEscape: () => setCommandBarMode(null),
   })
 
   return (
@@ -32,6 +35,10 @@ export default function App() {
           return <Component key={key} />
         })}
       </main>
+      <CommandBar
+        mode={commandBarMode}
+        onClose={() => setCommandBarMode(null)}
+      />
     </>
   )
 }

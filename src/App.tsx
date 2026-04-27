@@ -14,12 +14,13 @@ import HelpPanel from "@/components/HelpPanel"
 import { getEnabledSections } from "@/config"
 import { sectionRegistry } from "@/registry"
 import { useVimNavigation } from "@/hooks/useVimNavigation"
+import { useBufferRouting } from "@/hooks/useBufferRouting"
 
 type CommandBarMode = "command" | "search" | null
 
 export default function App() {
   const sections = getEnabledSections()
-  const [activeBuffer, setActiveBuffer] = useState(sections[0]?.key ?? "")
+  const [activeBuffer, setActiveBuffer] = useBufferRouting()
   const [commandBarMode, setCommandBarMode] = useState<CommandBarMode>(null)
   const [helpOpen, setHelpOpen] = useState(false)
 
@@ -28,7 +29,7 @@ export default function App() {
       const target = sections[index]
       if (target) setActiveBuffer(target.key)
     },
-    [sections],
+    [sections, setActiveBuffer],
   )
 
   useVimNavigation({
@@ -53,7 +54,11 @@ export default function App() {
       />
       <main className="fixed top-8 bottom-0 left-0 right-0 font-mono">
         <div className="h-full w-full overflow-auto">
-          {ActiveComponent && <ActiveComponent />}
+          {ActiveComponent && (
+            <ActiveComponent
+              {...(activeBuffer === "about" ? { onBufferSwitch: setActiveBuffer } : {})}
+            />
+          )}
         </div>
       </main>
       <HelpPanel open={helpOpen} onClose={() => setHelpOpen(false)} />

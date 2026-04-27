@@ -42,3 +42,8 @@ Journal de progression du projet. Chaque changement significatif est documente i
   11. Command Bar vim (:q, :help, :theme, /search)
   12. SEO meta tags (react-helmet-async, Open Graph, Twitter Card)
   13. GitHub Actions deploy sur GitHub Pages
+
+### [2026-04-27] - Dashboard About (snacks.nvim style)
+- **Type**: feature
+- **Fichiers**: `src/sections/About.tsx`, `src/data/about.ts`, `src/config.ts`, `src/App.tsx`
+- **Details**: Remplacement de la section About par un dashboard style snacks.nvim : header ASCII "BONJOUR", bio centree, tags focus, actions avec raccourcis clavier (p→Projects, s→Skills, g→GitHub). Cadre fenetre identique aux autres sections (border + title bar). Label navbar passe de "about.md" a "about". Icone GitHub SVG reelle, icones noir/blanc selon le theme.

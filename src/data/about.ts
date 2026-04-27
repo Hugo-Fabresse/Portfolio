@@ -15,6 +15,8 @@ export interface AboutData {
   bio: string[]
   /** Key focus areas displayed as tags */
   focus: string[]
+  /** GitHub profile URL */
+  githubUrl: string
 }
 
 /** About section content */
@@ -26,4 +28,5 @@ export const aboutData: AboutData = {
     "Environnement minimaliste (Hyprland, Neovim). Rigueur mathematique appliquee au code. Controle total sur l'execution.",
   ],
   focus: ["C", "Low-Level", "Security", "Architecture"],
+  githubUrl: "https://github.com/Hugo-Fabresse",
 }

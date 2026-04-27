@@ -16,7 +16,8 @@ import Experience from "@/sections/Experience"
 import Skills from "@/sections/Skills"
 
 /** Maps section config keys to their React components */
-export const sectionRegistry: Record<string, ComponentType> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const sectionRegistry: Record<string, ComponentType<any>> = {
   about: About,
   projects: Projects,
   experience: Experience,

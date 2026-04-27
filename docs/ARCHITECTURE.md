@@ -113,6 +113,9 @@ useVimNavigation.ts
     ├── Enter ──► ouvrir detail en split
     ├── o ──► expand detail plein ecran
     ├── q/Esc ──► fermer detail / fermer overlays
+    ├── p ──► switch to Projects buffer (dashboard about uniquement)
+    ├── s ──► switch to Skills buffer (dashboard about uniquement)
+    ├── g ──► open GitHub (dashboard about uniquement)
     ├── / ──► CommandBar focus (recherche)
     └── : ──► CommandBar mode commande
 ```

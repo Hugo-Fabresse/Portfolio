@@ -20,15 +20,12 @@ export default function Experience() {
         items={experienceData}
         getKey={(e) => e.id}
         listTitle="experience.log"
+        getItemText={(e) => `${e.role} @ ${e.organization}`}
         getDetailTitle={(e) => `${e.id}.log`}
-        renderItem={(exp, isSelected) => (
+        renderItem={(exp) => (
           <div className="font-mono text-[13px]">
-            <span className={isSelected ? "" : "text-tn-accent"}>
-              {exp.role}
-            </span>
-            <span className={`ml-1.5 text-[11px] ${isSelected ? "opacity-70" : "text-tn-comment"}`}>
-              @ {exp.organization}
-            </span>
+            <span className="text-tn-accent">{exp.role}</span>
+            <span className="ml-1.5 text-[11px] text-tn-comment">@ {exp.organization}</span>
           </div>
         )}
         renderDetail={(exp) => (

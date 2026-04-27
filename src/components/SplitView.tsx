@@ -29,7 +29,9 @@ interface SplitViewProps<T> {
   /** Unique key extractor for each item */
   getKey: (item: T) => string
   /** Render a single item in the list panel */
-  renderItem: (item: T, isSelected: boolean) => React.ReactNode
+  renderItem: (item: T) => React.ReactNode
+  /** Plain text of an item — used for cursor bounds */
+  getItemText: (item: T) => string
   /** Render the detail panel for the selected item */
   renderDetail: (item: T) => React.ReactNode
   /** Title shown in the list panel header (e.g. "projects/") */
@@ -42,6 +44,7 @@ export default function SplitView<T>({
   items,
   getKey,
   renderItem,
+  getItemText,
   renderDetail,
   listTitle,
   getDetailTitle,
@@ -49,12 +52,14 @@ export default function SplitView<T>({
   const [selectedItem, setSelectedItem] = useState<T | null>(null)
   const [viewState, setViewState] = useState<ViewState>("closed")
   const [focusedIndex, setFocusedIndex] = useState(0)
+  const [cursorCol, setCursorCol] = useState(0)
   const [focusPanel, setFocusPanel] = useState<"list" | "detail">("list")
 
   /** Open split view with a specific item */
   const openSplit = (item: T) => {
     setSelectedItem(item)
     setViewState("split")
+    setFocusPanel("detail")
   }
 
   /** Expand detail to full width */
@@ -83,25 +88,43 @@ export default function SplitView<T>({
         case "j":
           if (focusPanel === "list" && viewState !== "expanded") {
             e.preventDefault()
-            setFocusedIndex((prev) => (prev + 1) % items.length)
+            setFocusedIndex((prev) => {
+              const next = (prev + 1) % items.length
+              /* Clamp cursor col to new line length */
+              const maxCol = Math.max(0, getItemText(items[next]).length - 1)
+              setCursorCol((col) => Math.min(col, maxCol))
+              return next
+            })
           }
           break
         case "k":
           if (focusPanel === "list" && viewState !== "expanded") {
             e.preventDefault()
-            setFocusedIndex((prev) => (prev - 1 + items.length) % items.length)
+            setFocusedIndex((prev) => {
+              const next = (prev - 1 + items.length) % items.length
+              const maxCol = Math.max(0, getItemText(items[next]).length - 1)
+              setCursorCol((col) => Math.min(col, maxCol))
+              return next
+            })
           }
           break
         case "h":
-          if (viewState === "split") {
+          if (focusPanel === "list" && viewState !== "expanded") {
             e.preventDefault()
-            setFocusPanel("list")
+            setCursorCol((prev) => Math.max(0, prev - 1))
           }
           break
         case "l":
+          if (focusPanel === "list" && viewState !== "expanded") {
+            e.preventDefault()
+            const maxCol = Math.max(0, getItemText(items[focusedIndex]).length - 1)
+            setCursorCol((prev) => Math.min(maxCol, prev + 1))
+          }
+          break
+        case "Tab":
           if (viewState === "split") {
             e.preventDefault()
-            setFocusPanel("detail")
+            setFocusPanel((prev) => prev === "list" ? "detail" : "list")
           }
           break
         case "Enter":
@@ -111,15 +134,20 @@ export default function SplitView<T>({
           }
           break
         case "o":
-          if (viewState === "split") {
+          if (viewState === "split" && focusPanel === "detail") {
             e.preventDefault()
             expand()
           }
           break
         case "q":
-          if (viewState !== "closed") {
+          if (viewState === "expanded") {
             e.preventDefault()
-            close()
+            setViewState("split")
+          } else if (viewState === "split" && focusPanel === "detail") {
+            e.preventDefault()
+            setViewState("closed")
+            setSelectedItem(null)
+            setFocusPanel("list")
           }
           break
       }
@@ -163,7 +191,7 @@ export default function SplitView<T>({
             className={`
               border-2 rounded-lg overflow-hidden
               ${viewState === "split" ? "lg:w-2/5 w-full" : "w-full"}
-              ${selectedItem ? "border-tn-comment" : "border-tn-comment/20"}
+              ${viewState === "closed" || focusPanel === "list" ? "border-tn-accent" : "border-tn-comment/20"}
             `}
           >
             {/* Panel title bar */}
@@ -175,8 +203,7 @@ export default function SplitView<T>({
             <div className="flex-1 font-mono text-[13px] leading-relaxed overflow-auto">
               {items.map((item, index) => {
                 const key = getKey(item)
-                const isSelected = selectedItem !== null && getKey(selectedItem) === key
-                const isFocused = index === focusedIndex && focusPanel === "list"
+                const isFocused = index === focusedIndex
                 const lineNumWidth = String(items.length).length
                 return (
                   <button
@@ -185,24 +212,26 @@ export default function SplitView<T>({
                       setFocusedIndex(index)
                       openSplit(item)
                     }}
-                    className={`flex w-full text-left transition-colors ${
-                      isSelected
-                        ? "bg-tn-fg text-tn-bg font-bold"
-                        : isFocused
-                          ? "bg-white/5"
-                          : "hover:bg-white/10"
-                    }`}
+                    className="flex w-full text-left"
                   >
                     <span
-                      className={`text-right mr-3 pl-3 py-[2px] select-none shrink-0 ${
-                        isSelected ? "opacity-50" : "text-tn-comment"
-                      }`}
+                      className="text-right mr-3 pl-3 py-[2px] select-none shrink-0 text-tn-comment"
                       style={{ width: `${lineNumWidth + 2}ch` }}
                     >
                       {index + 1}
                     </span>
-                    <span className="py-[2px] pr-3">
-                      {renderItem(item, isSelected)}
+                    {/* Buffer content with cursor overlay */}
+                    <span className="py-[2px] pr-3 relative">
+                      {renderItem(item)}
+                      {/* Cursor block — shows character underneath inverted */}
+                      {isFocused && (
+                        <span
+                          className="absolute top-0 bottom-0 w-[1ch] bg-tn-fg text-tn-bg flex items-center justify-center text-[13px]"
+                          style={{ left: `${cursorCol}ch` }}
+                        >
+                          {getItemText(item)[cursorCol] ?? " "}
+                        </span>
+                      )}
                     </span>
                   </button>
                 )
@@ -236,8 +265,9 @@ export default function SplitView<T>({
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3, ease: snap }}
             className={`
-              border-2 border-tn-accent rounded-lg overflow-hidden
+              border-2 rounded-lg overflow-hidden
               ${viewState === "expanded" ? "w-full" : "lg:w-3/5 w-full"}
+              ${focusPanel === "detail" || viewState === "expanded" ? "border-tn-accent" : "border-tn-comment/20"}
             `}
           >
             {/* Panel title bar with controls */}

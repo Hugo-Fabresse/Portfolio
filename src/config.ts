@@ -33,7 +33,7 @@ export const siteConfig: SiteConfig = {
   title: "SYS_ARCH",
   sections: {
     about:      { enabled: true,  label: "about" },
-    projects:   { enabled: true,  label: "projects/" },
+    projects:   { enabled: true,  label: "projects.yml" },
     experience: { enabled: false, label: "experience.log" },
     skills:     { enabled: true,  label: "skills.toml" },
   },

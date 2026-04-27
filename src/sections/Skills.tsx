@@ -20,15 +20,13 @@ export default function Skills() {
         items={skillsData}
         getKey={(s) => s.id}
         listTitle="skills.toml"
+        getItemText={(s) => `[${s.id}]`}
         getDetailTitle={(s) => `[${s.id}]`}
-        renderItem={(category, isSelected) => (
+        renderItem={(category) => (
           <div className="font-mono text-[13px]">
-            <span className={isSelected ? "" : "text-tn-accent"}>
-              {category.title}
-            </span>
-            <span className={`ml-1.5 text-[11px] ${isSelected ? "opacity-70" : "text-tn-comment"}`}>
-              ({category.items.length})
-            </span>
+            <span className="text-tn-comment">{"["}</span>
+            <span className="text-tn-accent">{category.id}</span>
+            <span className="text-tn-comment">]</span>
           </div>
         )}
         renderDetail={(category) => (

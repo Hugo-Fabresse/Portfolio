@@ -5,6 +5,7 @@
  * and buffer switching shortcuts.
  */
 
+import { useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 /** Bezier snap curve from Hyprland config */
@@ -35,6 +36,24 @@ const commands = [
 ]
 
 export default function HelpPanel({ open, onClose }: HelpPanelProps) {
+  /** Capture all keydown events when open — blocks handlers behind */
+  useEffect(() => {
+    if (!open) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      e.stopPropagation()
+      e.preventDefault()
+
+      if (e.key === "q" || e.key === "Escape" || e.key === "?") {
+        onClose()
+      }
+    }
+
+    /* Use capture phase to intercept before other handlers */
+    window.addEventListener("keydown", handleKeyDown, true)
+    return () => window.removeEventListener("keydown", handleKeyDown, true)
+  }, [open, onClose])
+
   return (
     <AnimatePresence>
       {open && (

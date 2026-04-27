@@ -19,16 +19,15 @@ export default function Projects() {
       <SplitView<Project>
         items={projectsData}
         getKey={(p) => p.id}
-        listTitle="projects/"
+        listTitle="projects.yml"
+        getItemText={(p) => `- name: ${p.title}`}
         getDetailTitle={(p) => `${p.id}.c`}
-        renderItem={(project, isSelected) => (
+        renderItem={(project) => (
           <div className="font-mono text-[13px]">
-            <span className={isSelected ? "" : "text-tn-accent"}>
-              {project.title}
-            </span>
-            <span className={`ml-1.5 text-[11px] ${isSelected ? "opacity-70" : "text-tn-comment"}`}>
-              {project.subtitle}
-            </span>
+            <span className="text-tn-comment">{"- "}</span>
+            <span className="text-tn-secondary">{"name"}</span>
+            <span className="text-tn-comment">: </span>
+            <span className="text-tn-green">{project.title}</span>
           </div>
         )}
         renderDetail={(project) => (

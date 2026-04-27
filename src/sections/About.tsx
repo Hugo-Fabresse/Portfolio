@@ -89,7 +89,7 @@ export default function About({ onBufferSwitch }: AboutProps) {
 
   return (
     <Section id="about">
-      <div className="h-full border-2 border-tn-comment rounded-lg overflow-hidden flex flex-col">
+      <div className="h-full border-2 border-tn-accent rounded-lg overflow-hidden flex flex-col">
         {/* Panel title bar — same style as SplitView panels */}
         <div className="flex items-center h-6 px-3 bg-tn-bg-dark border-b border-tn-comment/20 text-[11px] text-tn-comment shrink-0">
           about
@@ -98,7 +98,7 @@ export default function About({ onBufferSwitch }: AboutProps) {
         {/* Dashboard content */}
         <div className="flex-1 flex flex-col items-center justify-center gap-6 p-4">
           {/* ASCII header — hidden on mobile */}
-          <pre className="hidden sm:block text-tn-accent text-center text-[0.55rem] leading-tight sm:text-xs">
+          <pre className="hidden sm:block text-tn-accent text-[0.55rem] leading-tight sm:text-xs">
             {ASCII_HEADER}
           </pre>
 

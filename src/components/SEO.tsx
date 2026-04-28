@@ -7,10 +7,8 @@
 
 import { Helmet } from "react-helmet-async"
 
-import { siteConfig } from "@/config"
-
 export default function SEO() {
-  const title = `${siteConfig.title} — Hugo Fabresse`
+  const title = "Hugo Fabresse — Portfolio"
   const description =
     "Portfolio de Hugo Fabresse — System Architect. C, Low-Level, Security, Architecture."
   const url = "https://hugo-fabresse.github.io/Portfolio/"

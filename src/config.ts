@@ -35,7 +35,7 @@ export const siteConfig: SiteConfig = {
     about:      { enabled: true,  label: "about" },
     projects:   { enabled: true,  label: "projects.yml" },
     experience: { enabled: false, label: "experience.log" },
-    skills:     { enabled: true,  label: "skills.toml" },
+    skills:     { enabled: true,  label: "skills.yml" },
   },
   sectionOrder: ["about", "projects", "experience", "skills"],
 }

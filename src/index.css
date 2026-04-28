@@ -16,7 +16,7 @@
   --color-tn-comment: #565f89;
 }
 
-/* Tokyo Night Light override */
+/* Tokyo Night Light */
 .light {
   --color-tn-bg: #d5d6db;
   --color-tn-bg-dark: #c8c9ce;
@@ -29,6 +29,123 @@
   --color-tn-comment: #6172b0;
 }
 
+/* Catppuccin Mocha */
+.catppuccin-mocha {
+  --color-tn-bg: #1e1e2e;
+  --color-tn-bg-dark: #181825;
+  --color-tn-fg: #cdd6f4;
+  --color-tn-accent: #89b4fa;
+  --color-tn-secondary: #cba6f7;
+  --color-tn-green: #a6e3a1;
+  --color-tn-red: #f38ba8;
+  --color-tn-orange: #fab387;
+  --color-tn-comment: #6c7086;
+}
+
+/* Catppuccin Latte */
+.catppuccin-latte {
+  --color-tn-bg: #eff1f5;
+  --color-tn-bg-dark: #e6e9ef;
+  --color-tn-fg: #4c4f69;
+  --color-tn-accent: #1e66f5;
+  --color-tn-secondary: #8839ef;
+  --color-tn-green: #40a02b;
+  --color-tn-red: #d20f39;
+  --color-tn-orange: #fe640b;
+  --color-tn-comment: #9ca0b0;
+}
+
+/* Gruvbox Dark */
+.gruvbox-dark {
+  --color-tn-bg: #282828;
+  --color-tn-bg-dark: #1d2021;
+  --color-tn-fg: #ebdbb2;
+  --color-tn-accent: #83a598;
+  --color-tn-secondary: #d3869b;
+  --color-tn-green: #b8bb26;
+  --color-tn-red: #fb4934;
+  --color-tn-orange: #fe8019;
+  --color-tn-comment: #928374;
+}
+
+/* Gruvbox Light */
+.gruvbox-light {
+  --color-tn-bg: #fbf1c7;
+  --color-tn-bg-dark: #f2e5bc;
+  --color-tn-fg: #3c3836;
+  --color-tn-accent: #076678;
+  --color-tn-secondary: #8f3f71;
+  --color-tn-green: #79740e;
+  --color-tn-red: #9d0006;
+  --color-tn-orange: #af3a03;
+  --color-tn-comment: #928374;
+}
+
+/* Nord */
+.nord {
+  --color-tn-bg: #2e3440;
+  --color-tn-bg-dark: #272c36;
+  --color-tn-fg: #d8dee9;
+  --color-tn-accent: #88c0d0;
+  --color-tn-secondary: #b48ead;
+  --color-tn-green: #a3be8c;
+  --color-tn-red: #bf616a;
+  --color-tn-orange: #d08770;
+  --color-tn-comment: #616e88;
+}
+
+/* Dracula */
+.dracula {
+  --color-tn-bg: #282a36;
+  --color-tn-bg-dark: #21222c;
+  --color-tn-fg: #f8f8f2;
+  --color-tn-accent: #bd93f9;
+  --color-tn-secondary: #ff79c6;
+  --color-tn-green: #50fa7b;
+  --color-tn-red: #ff5555;
+  --color-tn-orange: #ffb86c;
+  --color-tn-comment: #6272a4;
+}
+
+/* Solarized Dark */
+.solarized-dark {
+  --color-tn-bg: #002b36;
+  --color-tn-bg-dark: #00252e;
+  --color-tn-fg: #839496;
+  --color-tn-accent: #268bd2;
+  --color-tn-secondary: #6c71c4;
+  --color-tn-green: #859900;
+  --color-tn-red: #dc322f;
+  --color-tn-orange: #cb4b16;
+  --color-tn-comment: #586e75;
+}
+
+/* Solarized Light */
+.solarized-light {
+  --color-tn-bg: #fdf6e3;
+  --color-tn-bg-dark: #eee8d5;
+  --color-tn-fg: #657b83;
+  --color-tn-accent: #268bd2;
+  --color-tn-secondary: #6c71c4;
+  --color-tn-green: #859900;
+  --color-tn-red: #dc322f;
+  --color-tn-orange: #cb4b16;
+  --color-tn-comment: #93a1a1;
+}
+
+/* One Dark */
+.one-dark {
+  --color-tn-bg: #282c34;
+  --color-tn-bg-dark: #21252b;
+  --color-tn-fg: #abb2bf;
+  --color-tn-accent: #61afef;
+  --color-tn-secondary: #c678dd;
+  --color-tn-green: #98c379;
+  --color-tn-red: #e06c75;
+  --color-tn-orange: #d19a66;
+  --color-tn-comment: #5c6370;
+}
+
 /* Base styles */
 html {
   font-family: var(--font-mono);
@@ -38,4 +155,28 @@ html {
 body {
   background-color: var(--color-tn-bg);
   color: var(--color-tn-fg);
+}
+
+/* Nvim-style scrollbar — thin bar, theme colors */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-tn-comment);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tn-fg);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tn-comment) transparent;
 }

@@ -17,21 +17,25 @@ interface HelpPanelProps {
 }
 
 const keybinds = [
-  { key: "1-4", desc: "Switch to buffer N" },
-  { key: "j / k", desc: "Navigate items down / up" },
-  { key: "h / l", desc: "Switch focus list / detail" },
-  { key: "Enter", desc: "Open detail (split view)" },
-  { key: "o", desc: "Expand detail full screen" },
-  { key: "q", desc: "Close detail / go back" },
-  { key: ":", desc: "Command palette" },
+  { key: "1-9", desc: "Switch to buffer N" },
+  { key: "j / k", desc: "Navigate lines" },
+  { key: "h / l", desc: "Navigate characters" },
+  { key: "Tab", desc: "Switch panel (list / detail)" },
+  { key: "Enter", desc: "Open item" },
+  { key: "o", desc: "Expand detail (focus detail)" },
+  { key: "q", desc: "Close detail (focus detail)" },
+  { key: "p", desc: "Go to projects (dashboard)" },
+  { key: "s", desc: "Go to skills (dashboard)" },
+  { key: "g", desc: "Open GitHub (dashboard)" },
+  { key: ":", desc: "Command bar" },
   { key: "/", desc: "Search" },
   { key: "?", desc: "Toggle this help" },
   { key: "Esc", desc: "Close overlay" },
 ]
 
 const commands = [
-  { cmd: ":help", desc: "Show help" },
-  { cmd: ":theme", desc: "Toggle dark/light" },
+  { cmd: ":help", desc: "Show this help" },
+  { cmd: ":theme", desc: "List / set colorscheme" },
   { cmd: ":q", desc: "Easter egg" },
 ]
 

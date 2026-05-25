@@ -15,6 +15,13 @@ Journal de progression du projet. Chaque changement significatif est documente i
 
 ## Historique
 
+## 2026-05-25 — YAML content system (projects)
+
+- Migration des donnees projets de `src/data/projects.ts` (hardcode) vers `content/projects.yml`
+- Loader YAML avec import `?raw` de Vite + package `yaml`
+- Headers de section et de projet dynamiques (Record<string, string>)
+- Ajout/suppression de champs dans le YAML sans toucher au code
+
 ### [2026-04-26] - Nettoyage du repo et phase de design
 - **Type**: refactor
 - **Fichiers**: tous (suppression), `docs/superpowers/specs/2026-04-26-portfolio-redesign-design.md`

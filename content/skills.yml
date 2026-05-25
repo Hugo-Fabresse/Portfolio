@@ -1,0 +1,36 @@
+# content/skills.yml
+# Edit this file to manage the Skills section content.
+# The code reads this file and renders it automatically.
+# Fields in "header" are rendered dynamically — add/remove freely.
+
+section:
+  title: "skills.yml"
+  header:
+    Author: Hugo Fabresse
+    Last modified: 2026-04-27
+    Status: active
+
+categories:
+  - id: expertise
+    name: "Domaines d'expertise"
+    page: expertise.c
+    header:
+      Author: Hugo Fabresse
+    items:
+      - "C (Axe de developpement principal)"
+      - "C++"
+      - "Assembly (Architecture bas niveau)"
+      - "Manipulation avancee des structures memoire"
+      - "Interaction systeme profonde"
+      - "Securite offensive / Pentest / Red Team"
+
+  - id: methodologie
+    name: Methodologie
+    page: methodologie.c
+    header:
+      Author: Hugo Fabresse
+    items:
+      - "Minimalisme structurel et conceptuel"
+      - "Rejet de la complexite inutile et des abstractions couteuses"
+      - "Philosophie du 'Build tools, not dependencies'"
+      - "Vision strategique et anticipation des failles"

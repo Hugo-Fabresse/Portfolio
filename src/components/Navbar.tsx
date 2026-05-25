@@ -10,7 +10,7 @@
 import { useState, useRef, useEffect } from "react"
 import { useTheme } from "next-themes"
 
-import { getEnabledSections } from "@/config"
+import { siteConfig, getEnabledSections } from "@/config"
 import { themes, getThemeLabel } from "@/themes"
 
 interface NavbarProps {
@@ -42,12 +42,12 @@ export default function Navbar({ activeBuffer, onBufferSelect }: NavbarProps) {
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center h-8 px-3 bg-tn-bg-dark border-b border-tn-comment/20 font-mono text-[11px]">
       {/* Buffer tabs */}
       <div className="flex items-center gap-1">
-        {sections.map(({ key, config }, index) => {
-          const isActive = activeBuffer === key
+        {sections.map((section, index) => {
+          const isActive = activeBuffer === section.key
           return (
             <button
-              key={key}
-              onClick={() => onBufferSelect(key)}
+              key={section.key}
+              onClick={() => onBufferSelect(section.key)}
               className={`px-[10px] py-[2px] rounded transition-colors ${
                 isActive
                   ? "bg-tn-fg text-tn-bg font-bold"
@@ -55,7 +55,7 @@ export default function Navbar({ activeBuffer, onBufferSelect }: NavbarProps) {
               }`}
             >
               <span className="text-tn-comment mr-1">{index + 1}:</span>
-              {config.label}
+              {section.label}
             </button>
           )
         })}
@@ -63,7 +63,7 @@ export default function Navbar({ activeBuffer, onBufferSelect }: NavbarProps) {
 
       {/* Center — name */}
       <span className="absolute left-1/2 -translate-x-1/2 text-tn-accent font-bold text-[15px]">
-        Hugo Fabresse
+        {siteConfig.title}
       </span>
 
       {/* Right side — help hint, theme toggle, mode indicator */}

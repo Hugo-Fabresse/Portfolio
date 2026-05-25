@@ -1,0 +1,50 @@
+# content/projects.yml
+# Edit this file to manage the Projects section content.
+# The code reads this file and renders it automatically.
+# Fields in "header" are rendered dynamically — add/remove freely.
+
+section:
+  title: "projects.yml"
+  header:
+    Author: Hugo Fabresse
+    Last modified: 2026-04-27
+    Status: active
+
+projects:
+  - id: just
+    name: JUST
+    subtitle: Version Control System
+    page: just.c
+    header:
+      Author: Hugo Fabresse
+      Created: 2025
+      Status: completed
+      Language: C
+      License: MIT
+    tags: [C, Makefile, Memory Management, Data Structures]
+    description: >
+      VCS developpe integralement en C from scratch. Implementation d'un
+      systeme d'objets complet (blobs, trees, commits). Gestion de memoire
+      rigoureuse et compilation stricte. Manipulation avancee de pointeurs.
+    github: https://github.com/Hugo-music/JUST
+    defaults: >
+      TODO
+
+  - id: goat
+    name: GOAT
+    subtitle: Minimalist Git
+    page: goat.c
+    header:
+      Author: Hugo Fabresse
+      Created: 2025
+      Status: completed
+      Language: C
+      License: MIT
+    tags: [C, System Calls, "File I/O", Reverse Engineering]
+    description: >
+      Reproduction des primitives essentielles de Git. Approche experimentale
+      visant a comprendre les mecanismes internes profonds de l'outil.
+      Parfaite complementarite architecturale avec le developpement de JUST.
+    github: https://github.com/Hugo-music/GOAT
+    defaults: >
+      TODO

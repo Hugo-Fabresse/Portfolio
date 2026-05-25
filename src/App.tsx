@@ -43,7 +43,10 @@ export default function App() {
     onBufferSwitch: switchBuffer,
   })
 
-  const ActiveComponent = sectionRegistry[activeBuffer]
+  const activeSection = sections.find((s) => s.key === activeBuffer)
+  const ActiveComponent = activeSection
+    ? sectionRegistry[activeSection.component]
+    : undefined
 
   return (
     <>

@@ -9,6 +9,8 @@ Portfolio/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml          # GitHub Actions : build + deploy gh-pages
+├── content/
+│   └── projects.yml          # Contenu des projets (YAML, editable sans toucher au code)
 ├── docs/
 │   ├── ARCHITECTURE.md         # Ce fichier
 │   ├── CONVENTIONS.md          # Conventions de code
@@ -63,7 +65,7 @@ App.tsx ──► registry.ts (lookup composant)
     │              │
     ▼              ▼
 Section.tsx ◄── sections/About.tsx ◄── data/about.ts
-                sections/Projects.tsx ◄── data/projects.ts
+                content/projects.yml ──► data/projects.ts (YAML loader) ──► sections/Projects.tsx
                 sections/Experience.tsx ◄── data/experience.ts
                 sections/Skills.tsx ◄── data/skills.ts
 ```
@@ -125,7 +127,7 @@ useVimNavigation.ts
 | Couche | Responsabilite | Ne doit PAS |
 |---|---|---|
 | `config.ts` | Source de verite : quelles sections sont actives, metadata site | Contenir du contenu ou de la logique UI |
-| `data/` | Contenu brut type par section | Contenir de logique de rendu |
+| `data/` | Loaders et contenu : parse les fichiers YAML (content/) et expose les donnees typees | Contenir de logique de rendu |
 | `sections/` | Rendu visuel d'une section a partir de ses data | Acceder a la config d'autres sections |
 | `components/` | UI reutilisable (Navbar, Section wrapper, SplitView, CommandBar) | Contenir du contenu specifique |
 | `SplitView.tsx` | Pattern tiling WM generique : gere les 3 etats (ferme, split, expand), layout responsive, animations | Connaitre le type de contenu (recoit des render props) |

@@ -1,60 +1,56 @@
 /**
- * Data for the Projects section.
+ * Projects data loader — reads content/projects.yml at build time.
  *
- * Modify this file to update the Projects section content.
+ * Edit content/projects.yml to update project content.
  * See src/sections/Projects.tsx for rendering.
  */
 
+import YAML from "yaml"
+
+import raw from "../../content/projects.yml?raw"
+
+/** Section-level configuration */
+export interface ProjectsSection {
+  /** Title shown in the list panel tab */
+  title: string
+  /** Header fields rendered as comments (key: value) */
+  header: Record<string, string>
+}
+
 /** A single project entry */
 export interface Project {
-  /** Unique identifier (used as key and for SplitView) */
+  /** Unique identifier */
   id: string
-  /** Project name */
-  title: string
-  /** One-line project description */
+  /** Display name in the list */
+  name: string
+  /** Short description (used in detail header comment) */
   subtitle: string
-  /** Detailed description shown in SplitView detail panel */
-  description: string
+  /** Title shown in the detail panel tab (e.g. "just.c") */
+  page: string
+  /** Header fields rendered as comment block in detail view */
+  header: Record<string, string>
   /** Technology tags */
   tags: string[]
-  /** Project status */
-  status: string
-  /** Year created */
-  created: string
-  /** Primary language */
-  language: string
-  /** License */
-  license: string
+  /** Detailed description */
+  description: string
   /** GitHub repository URL */
   github?: string
   /** Live demo URL */
   url?: string
+  /** Known defaults/weaknesses (author's opinion) */
+  defaults?: string
 }
 
+/** Raw YAML structure */
+interface ProjectsYAML {
+  section: ProjectsSection
+  projects: Project[]
+}
+
+const parsed: ProjectsYAML = YAML.parse(raw)
+
+/** Section-level config (title, header fields) */
+export const projectsSection: ProjectsSection = parsed.section
+
 /** All projects */
-export const projectsData: Project[] = [
-  {
-    id: "just",
-    title: "JUST",
-    subtitle: "Version Control System",
-    description:
-      "VCS developpe integralement en C from scratch. Implementation d'un systeme d'objets complet (blobs, trees, commits). Gestion de memoire rigoureuse et compilation stricte. Manipulation avancee de pointeurs.",
-    tags: ["C", "Makefile", "Memory Management", "Data Structures"],
-    status: "completed",
-    created: "2025",
-    language: "C",
-    license: "MIT",
-  },
-  {
-    id: "goat",
-    title: "GOAT",
-    subtitle: "Minimalist Git",
-    description:
-      "Reproduction des primitives essentielles de Git. Approche experimentale visant a comprendre les mecanismes internes profonds de l'outil. Parfaite complementarite architecturale avec le developpement de JUST.",
-    tags: ["C", "System Calls", "File I/O", "Reverse Engineering"],
-    status: "completed",
-    created: "2025",
-    language: "C",
-    license: "MIT",
-  },
-]
+export const projectsData: Project[] = parsed.projects

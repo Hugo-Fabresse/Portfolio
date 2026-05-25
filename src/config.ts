@@ -1,51 +1,40 @@
 /**
- * Site configuration — source of truth.
+ * Site configuration loader — reads content/site.yml at build time.
  *
- * Controls which sections are enabled, their navbar labels,
- * and site-wide metadata. The Navbar and App read this to decide
- * what to render.
+ * Edit content/site.yml to manage navbar title, sections, and order.
+ * To add a new component type, register it in src/registry.ts.
  *
- * To enable/disable a section: toggle `enabled`.
- * To add a section: add a new entry here + in registry.ts.
- *
- * @see docs/ARCHITECTURE.md — "Comment ajouter une section"
+ * @see docs/ARCHITECTURE.md
  */
+
+import YAML from "yaml"
+
+import raw from "../content/site.yml?raw"
 
 /** Configuration for a single section */
 export interface SectionConfig {
-  /** Whether this section is rendered and shown in navbar */
-  enabled: boolean
+  /** Unique identifier (used for routing and buffer switching) */
+  key: string
   /** Navbar label (styled as a filename for Neovim aesthetic) */
   label: string
+  /** React component name (must exist in registry.ts) */
+  component: string
 }
 
 /** Full site configuration */
 export interface SiteConfig {
-  /** Site title shown in navbar and SEO */
+  /** Site title shown centered in navbar */
   title: string
-  /** Section toggle map — key must match registry.ts keys */
-  sections: Record<string, SectionConfig>
-  /** Ordered array of section keys (controls render + nav order) */
-  sectionOrder: string[]
+  /** Ordered list of sections to display */
+  sections: SectionConfig[]
 }
 
-export const siteConfig: SiteConfig = {
-  title: "SYS_ARCH",
-  sections: {
-    about:      { enabled: true,  label: "about" },
-    projects:   { enabled: true,  label: "projects.yml" },
-    experience: { enabled: false, label: "experience.log" },
-    skills:     { enabled: true,  label: "skills.yml" },
-  },
-  sectionOrder: ["about", "projects", "experience", "skills"],
-}
+export const siteConfig: SiteConfig = YAML.parse(raw)
 
 /**
- * Returns only the enabled sections in order.
+ * Returns the ordered list of sections.
  * Used by App.tsx and Navbar to know what to render.
  */
-export function getEnabledSections(): { key: string; config: SectionConfig }[] {
-  return siteConfig.sectionOrder
-    .filter((key) => siteConfig.sections[key]?.enabled)
-    .map((key) => ({ key, config: siteConfig.sections[key] }))
+export function getEnabledSections(): SectionConfig[] {
+  return siteConfig.sections
 }

@@ -1,9 +1,13 @@
 /**
- * Data for the About section.
+ * About data loader — reads content/about.yml at build time.
  *
- * Modify this file to update the About section content.
+ * Edit content/about.yml to update about content.
  * See src/sections/About.tsx for rendering.
  */
+
+import YAML from "yaml"
+
+import raw from "../../content/about.yml?raw"
 
 /** About section content */
 export interface AboutData {
@@ -20,13 +24,4 @@ export interface AboutData {
 }
 
 /** About section content */
-export const aboutData: AboutData = {
-  title: "Hugo Fabresse",
-  tagline: "System Architect",
-  bio: [
-    "Specialisation en C. Focus structurel. Refus des abstractions inutiles.",
-    "Environnement minimaliste (Hyprland, Neovim). Rigueur mathematique appliquee au code. Controle total sur l'execution.",
-  ],
-  focus: ["C", "Low-Level", "Security", "Architecture"],
-  githubUrl: "https://github.com/Hugo-Fabresse",
-}
+export const aboutData: AboutData = YAML.parse(raw)

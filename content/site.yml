@@ -1,0 +1,25 @@
+# content/site.yml
+# Central site configuration.
+# Edit this file to manage the navbar, sections, and their order.
+# To disable a section, remove it from the list.
+# To reorder, change the list order.
+
+# Title shown in the center of the navbar
+title: Hugo Fabresse
+
+# Sections displayed in the navbar and rendered in the app.
+# - key: unique identifier (used for routing and buffer switching)
+# - label: text shown in the navbar tab (styled as filename)
+# - component: React component name (must exist in src/registry.ts)
+sections:
+  - key: about
+    label: about
+    component: About
+
+  - key: projects
+    label: projects.yml
+    component: Projects
+
+  - key: skills
+    label: skills.yml
+    component: Skills

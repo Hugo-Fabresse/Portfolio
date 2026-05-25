@@ -1,0 +1,14 @@
+# content/about.yml
+# Edit this file to manage the About section content.
+# The code reads this file and renders it automatically.
+
+title: Hugo Fabresse
+tagline: System Architect
+
+bio:
+  - "Specialisation en C. Focus structurel. Refus des abstractions inutiles."
+  - "Environnement minimaliste (Hyprland, Neovim). Rigueur mathematique appliquee au code. Controle total sur l'execution."
+
+focus: [C, Low-Level, Security, Architecture]
+
+githubUrl: https://github.com/Hugo-Fabresse
